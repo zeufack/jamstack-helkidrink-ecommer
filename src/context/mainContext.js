@@ -23,7 +23,7 @@ const SiteContext = React.createContext()
 function calculateTotal(cart) {
   const total = cart.reduce((acc, next) => {
     const quantity = next.quantity
-    acc = acc + JSON.parse(next.price) * quantity
+    acc = acc + JSON.parse(next.pro_price) * quantity
     return acc
   }, 0)
   return total
@@ -70,7 +70,7 @@ class ContextProviderComponent extends React.Component {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify({
       cart, numberOfItemsInCart: cart.length, total: calculateTotal(cart)
     }))
-    toast("Successfully added item to cart!", {
+    toast("Produit ajouter à votre panier!", {
       position: toast.POSITION.TOP_LEFT
     })
     this.forceUpdate()

@@ -3,13 +3,15 @@ import { Link } from 'gatsby'
 import { DENOMINATION } from '../../providers/inventoryProvider'
 import Image from './Image'
 
-const ListItem = ({ link, title, imageSrc, price }) =>  (
-  <div className="
+const ListItem = ({ link, title, imageSrc, pro_price, autre_price }) => (
+  <div
+    className="
     w-100
     md:w-1/2
     lg:w-1/4
     p1 sm:p-2
-  ">
+  "
+  >
     <Link to={`/${link}`}>
       <div className="h-72 flex justify-center items-center bg-light hover:bg-light-200">
         <div className="flex flex-column justify-center items-center">
@@ -19,7 +21,10 @@ const ListItem = ({ link, title, imageSrc, price }) =>  (
     </Link>
     <div>
       <p className="m-4 text-center text-l font-semibold mb-1">{title}</p>
-      <p className="text-center text-xs text-gray-700 mb-4">{`${DENOMINATION}${price}`}</p>
+      <p className="text-center text-xs text-gray-700 mb-4">
+        Pro: {`${DENOMINATION}${pro_price}`} <br /> Autre:{" "}
+        {`${DENOMINATION}${autre_price}`}{" "}
+      </p>
     </div>
   </div>
 )

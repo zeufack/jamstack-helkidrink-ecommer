@@ -110,7 +110,7 @@ const Checkout = ({ context }) => {
       receipt_email: "customer@example.com",
       id: uuid(),
     }
-    console.log("order: ", order)
+    console.log("order: ", order, input)
     // TODO call API
     setOrderCompleted(true)
     clearCart()
@@ -136,11 +136,11 @@ const Checkout = ({ context }) => {
           "
       >
         <div className="pt-10 pb-8">
-          <h1 className="text-5xl font-light">Checkout</h1>
+          <h1 className="text-5xl font-light">Commande</h1>
           <Link to="/cart">
             <div className="cursor-pointer flex">
               <FaLongArrowAltLeft className="mr-2 text-gray-600 mt-1" />
-              <p className="text-gray-600 text-sm">Edit Cart</p>
+              <p className="text-gray-600 text-sm">modifier le panier</p>
             </div>
           </Link>
         </div>
@@ -164,7 +164,8 @@ const Checkout = ({ context }) => {
                       </p>
                       <div className="flex flex-1 justify-end">
                         <p className="m-0 pl-10 text-gray-900 tracking-tighter font-semibold">
-                          {DENOMINATION + item.price}
+                          Pro: {DENOMINATION + item.pro_price} <br />
+                          Autre: {DENOMINATION + item.autre_price}
                         </p>
                       </div>
                     </div>
@@ -175,13 +176,36 @@ const Checkout = ({ context }) => {
             <div className="flex flex-1 flex-col md:flex-row">
               <div className="flex flex-1 pt-8 flex-col">
                 <div className="mt-4 border-t pt-10">
-                  <form onSubmit={handleSubmit}>
+                  <p>
+                    Envoyez un nous un mail en indiquant les articles et les
+                    quantites pour valider votre commade. vous pouvez:
+                    <ul className="list-disc">
+                      <li>
+                        Payer maintenant et venir à l'entrepôt pour retirer vos
+                        articles, nous sommes ouvert Mardi, vendredi, Samedi,
+                        Dimanche
+                      </li>
+                      <li>
+                        Payer maintenant et vous faire livrer vos articles
+                      </li>
+                      <li>
+                        Venir à l'entrepôt payer pour avoir vos
+                        articles. articles, nous sommes ouvert Mardi, vendredi,
+                        Samedi, Dimanche
+                      </li>
+                    </ul>
+                    <p className="text-sm pr-10 font-black">
+                      email: paulinepasma@gmail.com
+                    </p>
+                    <p className="tracking-tighter w-38 flex justify-end"></p>
+                  </p>
+                  {/* <form onSubmit={handleSubmit}>
                     {errorMessage ? <span>{errorMessage}</span> : ""}
                     <Input
                       onChange={onChange}
                       value={input.name}
                       name="name"
-                      placeholder="Cardholder name"
+                      placeholder="Nom"
                     />
                     <CardElement className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                     <Input
@@ -194,25 +218,25 @@ const Checkout = ({ context }) => {
                       onChange={onChange}
                       value={input.street}
                       name="street"
-                      placeholder="Street"
+                      placeholder="Rue"
                     />
                     <Input
                       onChange={onChange}
                       value={input.city}
                       name="city"
-                      placeholder="City"
+                      placeholder="Ville"
                     />
                     <Input
                       onChange={onChange}
                       value={input.state}
                       name="state"
-                      placeholder="State"
+                      placeholder="Region"
                     />
                     <Input
                       onChange={onChange}
                       value={input.postal_code}
                       name="postal_code"
-                      placeholder="Postal Code"
+                      placeholder="Code Postal"
                     />
                     <button
                       type="submit"
@@ -221,39 +245,17 @@ const Checkout = ({ context }) => {
                       className="hidden md:block bg-secondary hover:bg-black text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
                       type="button"
                     >
-                      Confirm order
+                      Confirmer la commande
                     </button>
-                  </form>
+                  </form> */}
                 </div>
               </div>
-              <div className="md:pt-20">
-                <div className="ml-4 pl-2 flex flex-1 justify-end pt-2 md:pt-8 pr-4">
-                  <p className="text-sm pr-10">Subtotal</p>
-                  <p className="tracking-tighter w-38 flex justify-end">
-                    {DENOMINATION + total}
-                  </p>
-                </div>
-                <div className="ml-4 pl-2 flex flex-1 justify-end pr-4">
-                  <p className="text-sm pr-10">Shipping</p>
-                  <p className="tracking-tighter w-38 flex justify-end">
-                    FREE SHIPPING
-                  </p>
-                </div>
-                <div className="md:ml-4 pl-2 flex flex-1 justify-end bg-gray-200 pr-4 pt-6">
-                  <p className="text-sm pr-10">Total</p>
-                  <p className="font-semibold tracking-tighter w-38 flex justify-end">
-                    {DENOMINATION + (total + calculateShipping())}
-                  </p>
-                </div>
-                <button
-                  type="submit"
-                  disabled={!stripe}
-                  onClick={handleSubmit}
-                  className="md:hidden bg-secondary hover:bg-black text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button"
-                >
-                  Confirm order
-                </button>
+              <div className="md:pt-20 flex justify-center">
+                <Image
+                  className="w-32 m-0"
+                  src="images/products/paypal-784404_1280-1280x640.png"
+                  alt="paypal"
+                />
               </div>
             </div>
           </div>

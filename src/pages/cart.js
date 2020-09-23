@@ -35,12 +35,12 @@ const Cart = ({ context }) => {
           c_large:w-c_large
         ">
           <div className="pt-10 pb-8">
-            <h1 className="text-5xl font-light">Your Cart</h1>
+            <h1 className="text-5xl font-light">Votre Panier</h1>
           </div>
 
           {
             cartEmpty ? (
-              <h3>No items in cart.</h3>
+              <h3>Votre panier est vide !!! .</h3>
             ) : (
               <div className="flex flex-col">
                 <div className="">
@@ -48,16 +48,21 @@ const Cart = ({ context }) => {
                     cart.map((item) => {
                       return (
                         <div className="border-b py-10" key={item.id}>
-
-                          { /* Responsive - Desktop */}
+                          {/* Responsive - Desktop */}
                           <div className="flex items-center hidden md:flex">
                             <Link to={slugify(item.name)}>
-                              <Image className="w-32 m-0" src={item.image} alt={item.name} />
+                              <Image
+                                className="w-32 m-0"
+                                src={item.image}
+                                alt={item.name}
+                              />
                             </Link>
                             <Link to={slugify(item.name)}>
-                              <p className="
+                              <p
+                                className="
                               m-0 pl-10 text-gray-600 text-sm w-56
-                              ">
+                              "
+                              >
                                 {item.name}
                               </p>
                             </Link>
@@ -70,26 +75,38 @@ const Cart = ({ context }) => {
                             </div>
                             <div className="flex flex-1 justify-end">
                               <p className="m-0 pl-10 text-gray-900 tracking-tighter font-semibold">
-                                {DENOMINATION + item.price}
+                                Pro:{DENOMINATION + item.pro_price}
+                                <br />
+                                Autre: {DENOMINATION + item.autre_price}
                               </p>
                             </div>
-                            <div role="button" onClick={() => removeFromCart(item)} className="
+                            <div
+                              role="button"
+                              onClick={() => removeFromCart(item)}
+                              className="
                             m-0 ml-10 text-gray-900 text-s cursor-pointer
-                            ">
+                            "
+                            >
                               <FaTimes />
                             </div>
                           </div>
 
-                          { /* Responsive - Mobile */}
+                          {/* Responsive - Mobile */}
                           <div className="flex items-center flex md:hidden">
                             <Link to={slugify(item.name)}>
-                              <Image className="w-32 m-0" src={item.image} alt={item.name} />
+                              <Image
+                                className="w-32 m-0"
+                                src={item.image}
+                                alt={item.name}
+                              />
                             </Link>
                             <div>
                               <Link to={slugify(item.name)}>
-                                <p className="
+                                <p
+                                  className="
                                 m-0 pl-6 text-gray-600 text-base
-                                ">
+                                "
+                                >
                                   {item.name}
                                 </p>
                               </Link>
@@ -102,14 +119,16 @@ const Cart = ({ context }) => {
                                 />
                               </div>
                               <div className="flex flex-1">
-                                <p className="text-lg m-0 pl-6 pt-4 text-gray-900 tracking-tighter font-semibold">
-                                  {DENOMINATION + item.price}
-                                </p>
+                                
                               </div>
                             </div>
-                            <div role="button" onClick={() => removeFromCart(item)} className="
+                            <div
+                              role="button"
+                              onClick={() => removeFromCart(item)}
+                              className="
                             m-0 ml-10 text-gray-900 text-s cursor-pointer mr-2
-                            ">
+                            "
+                            >
                               <FaTimes />
                             </div>
                           </div>
@@ -121,14 +140,10 @@ const Cart = ({ context }) => {
             </div>
             )
           }
-          <div className="flex flex-1 justify-end py-8">
-            <p className="text-sm pr-10">Total</p>
-            <p className="font-semibold tracking-tighter">{DENOMINATION + total}</p>
-          </div>
           {!cartEmpty && (
             <Link to="/checkout" className="flex flex-1 justify-end">
               <div className="cursor-pointer flex">
-                <p className="text-gray-600 text-sm mr-2">Proceed to check out</p>
+                <p className="text-gray-600 text-sm mr-2">commander</p>
                 <FaLongArrowAltRight className="text-gray-600 mt-1" />
               </div>
             </Link>

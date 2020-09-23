@@ -22,6 +22,6 @@ async function getInventory() {
   })
 }
 
-const DENOMINATION = '$'
+const DENOMINATION = "€"
 
 export { DENOMINATION, getInventory as default } 

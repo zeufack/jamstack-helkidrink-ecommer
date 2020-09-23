@@ -23,7 +23,8 @@ const CategoryView = (props) => {
                       key={index}
                       link={slugify(item.name)}
                       title={item.name}
-                      price={item.price}
+                      pro_price={item.pro_price}
+                      autre_price={item.autre_price}
                       imageSrc={item.image}
                     />
                   )

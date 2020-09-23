@@ -10,7 +10,7 @@ import QuantityPicker from '../components/QuantityPicker'
 const ItemView = (props) => {
   const [numberOfitems, updateNumberOfItems] = useState(1)
   const item = props.pageContext.content
-  const { price, image, name, description } = item
+  const { pro_price,autre_price, image, name, description } = item
   const { context: { addToCart }} = props
 
   function addItemToCart (item) {
@@ -30,20 +30,32 @@ const ItemView = (props) => {
   return (
     <>
       <CartLink />
-      <div className="py-12 flex flex-1 flex-col
+      <div
+        className="py-12 flex flex-1 flex-col
       md:flex-row
       w-full
-      my-0 mx-auto">
+      my-0 mx-auto"
+      >
         <div className="w-full md:w-1/2 h-112 flex flex-1 bg-light hover:bg-light-200">
           <div className="py-16 p10 flex flex-1 justify-center items-center">
-            <Popup modal trigger={<img src={image} className="max-w-lg m-0 max-h-96 w-64 md:w-full" alt="Inventory item" />}>
+            <Popup
+              modal
+              trigger={
+                <img
+                  src={image}
+                  className="max-w-lg m-0 max-h-96 w-64 md:w-full"
+                  alt="Inventory item"
+                />
+              }
+            >
               <Image src={image} alt="Inventory item" />
             </Popup>
           </div>
         </div>
         <div className="pt-2 px-0 md:px-10 pb-8 w-full md:w-1/2">
           <h1 className="text-5xl font-light">{name}</h1>
-          <h2 className="text-2xl tracking-tighter">${price}</h2>
+          <h2 className="text-2xl tracking-tighter">Pro: €{pro_price}</h2>
+          <h2 className="text-2xl tracking-tighter">Autre: €{autre_price}</h2>
           <p className="text-gray-600 text-sm">{description}</p>
           <div className="mb-6">
             <QuantityPicker
@@ -54,7 +66,7 @@ const ItemView = (props) => {
           </div>
           <Button
             full
-            title="Add to Cart"
+            title="Ajoute Au Panier"
             onClick={() => addItemToCart(item)}
           />
         </div>
